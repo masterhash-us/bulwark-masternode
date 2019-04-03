@@ -24,7 +24,7 @@ function Refresh() {
 
 function Update() {
     cd /opt/masternode
-    git pull
+    sudo git pull
     exec "run.sh"
 }
 
