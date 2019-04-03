@@ -15,9 +15,9 @@ function Status() {
 
 function Refresh() {
     sudo service bulwarkd stop
-    rm -rf ~/.bulwark.bulwark/blocks ~/.bulwark.bulwark/database ~/.bulwark.bulwark/chainstate ~/.bulwark.bulwark/peers.dat
+    rm -rf ~/.bulwark/blocks ~/.bulwark/database ~/.bulwark/chainstate ~/.bulwark/peers.dat
     sudo service bulwarkd start
-    until bulwark-cli getinfo; do
+    until bulwark-cli getinfo >/dev/null; do
     sleep 1;
     done
 }
