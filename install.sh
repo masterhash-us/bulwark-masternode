@@ -8,6 +8,6 @@ echo "masternode=1" >> ~/.bulwark/bulwark.conf
 echo "masternodeprivkey=$KEY" >> ~/.bulwark/bulwark.conf
 sudo service bulwarkd restart
 
-until bulwark-cli getinfo; do
+until bulwark-cli getinfo >/dev/null; do
   sleep 1;
 done
