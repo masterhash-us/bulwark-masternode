@@ -57,6 +57,7 @@ function Menu() {
 }
 
 if ! grep -q "masternodeprivkey=" ~/.bulwark/bulwark.conf; then
+    Update
     bash /opt/masternode/install.sh
 fi
 
