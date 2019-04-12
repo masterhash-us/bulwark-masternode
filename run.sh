@@ -1,30 +1,30 @@
 #!/usr/bin/env bash
 
 function Status() {
-    if STATUS=$(phore-cli masternode status 2>&1); then
+    if STATUS=$(bitsend-cli masternode status 2>&1); then
         TXHASH=$(jq -r .txhash <<< "$STATUS")
         TXN=$(jq -r .outputidx <<< "$STATUS")
         TX="$TXHASH:$TXN"
         ADDRESS=$(jq -r .addr <<< "$STATUS")
         MESSAGE=$(jq -r .message <<< "$STATUS")
-        whiptail --title "phore Masternode" --msgbox "TX: $TX\nAddress: $ADDRESS\nStatus: $MESSAGE" 10 78
+        whiptail --title "bitsend Masternode" --msgbox "TX: $TX\nAddress: $ADDRESS\nStatus: $MESSAGE" 10 78
     else
-        whiptail --title "phore Masternode" --msgbox "Failed retriving masternode status.\n$STATUS" 10 78
+        whiptail --title "bitsend Masternode" --msgbox "Failed retriving masternode status.\n$STATUS" 10 78
     fi
 }
 
 function Restart() {
-    sudo service phored restart
-    until phore-cli getinfo >/dev/null; do
+    sudo service bitsendd restart
+    until bitsend-cli getinfo >/dev/null; do
         sleep 1;
     done
 }
 
 function Refresh() {
-    sudo service phored stop
-    rm -rf ~/.phore/blocks ~/.phore/database ~/.phore/chainstate ~/.phore/peers.dat
-    sudo service phored start
-    until phore-cli getinfo >/dev/null; do
+    sudo service bitsendd stop
+    rm -rf ~/.bitsend/blocks ~/.bitsend/database ~/.bitsend/chainstate ~/.bitsend/peers.dat
+    sudo service bitsendd start
+    until bitsend-cli getinfo >/dev/null; do
         sleep 1;
     done
 }
@@ -40,7 +40,7 @@ function Shell() {
 }
 
 function Menu() {
-    SEL=$(whiptail --nocancel --title "phore Masternode" --menu "Choose an option" 16 78 8 \
+    SEL=$(whiptail --nocancel --title "bitsend Masternode" --menu "Choose an option" 16 78 8 \
         "Status" "Display masternode status." \
         "Restart" "Restart masternode." \
         "Refresh" "Wipe and reinstall blockchain." \
@@ -56,7 +56,7 @@ function Menu() {
     esac
 }
 
-if ! grep -q "masternodeprivkey=" ~/.phore/phore.conf; then
+if ! grep -q "masternodeprivkey=" ~/.bitsend/bitsend.conf; then
     cd /opt/masternode
     sudo git pull
     bash /opt/masternode/install.sh
