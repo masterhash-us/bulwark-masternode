@@ -2,12 +2,12 @@
 
 while [ "$KEY" == "" ]
 do
-    KEY=$(whiptail --inputbox "Masternode Privkey" 8 78 --title "Bitsend Masternode Setup" --nocancel 3>&1 1>&2 2>&3)
+    KEY=$(whiptail --inputbox "Masternode Privkey" 8 78 --title "SmartChash Masternode Setup" --nocancel 3>&1 1>&2 2>&3)
 done
-echo "masternode=1" >> ~/.bitsend/bitsend.conf
-echo "masternodeprivkey=$KEY" >> ~/.bitsend/bitsend.conf
-sudo service bitsendd restart
+echo "masternode=1" >> ~/.smartcash/smartcash.conf
+echo "masternodeprivkey=$KEY" >> ~/.smartcash/smartcash.conf
+sudo service smartcashd restart
 
-until bitsend-cli getinfo >/dev/null; do
+until smartcash-cli getinfo >/dev/null; do
   sleep 1;
 done
