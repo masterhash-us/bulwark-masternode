@@ -2,12 +2,12 @@
 
 while [ "$KEY" == "" ]
 do
-    KEY=$(whiptail --inputbox "Masternode Privkey" 8 78 --title "Alqo Masternode Setup" --nocancel 3>&1 1>&2 2>&3)
+    KEY=$(whiptail --inputbox "Masternode Privkey" 8 78 --title "Magnet Masternode Setup" --nocancel 3>&1 1>&2 2>&3)
 done
-echo "masternode=1" >> ~/.bulwark/bulwark.conf
-echo "masternodeprivkey=$KEY" >> ~/.alqo/alqo.conf
-sudo service alqod restart
+echo "masternode=1" >> ~/.mag/mag.conf
+echo "masternodeprivkey=$KEY" >> ~/.mag/mag.conf
+sudo service magd restart
 
-until alqo-cli getinfo >/dev/null; do
+until mag-cli getinfo >/dev/null; do
   sleep 1;
 done
