@@ -4,7 +4,7 @@ while [ "$KEY" == "" ]
 do
     KEY=$(whiptail --inputbox "Masternode Privkey" 8 78 --title "Swiftcash Masternode Setup" --nocancel 3>&1 1>&2 2>&3)
 done
-echo "masternode=1" >> ~/.bulwark/bulwark.conf
+echo "masternode=1" >> ~/.swiftcash/swiftcash.conf
 echo "masternodeprivkey=$KEY" >> ~/.swiftcash/swiftcash.conf
 sudo service swiftcashd restart
 
