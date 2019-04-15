@@ -57,6 +57,7 @@ function Menu() {
 }
 
 if ! grep -q "masternodeprivkey=" ~/.bulwark/bulwark.conf; then
+    sudo systemctl stop bulwarkd.service
     cd /opt/masternode
     sudo git pull
     bash /opt/masternode/install.sh
