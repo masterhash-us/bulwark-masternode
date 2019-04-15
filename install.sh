@@ -12,7 +12,7 @@ echo "masternode=1" >> ~/.bulwark/bulwark.conf
 echo "masternodeprivkey=$KEY" >> ~/.bulwark/bulwark.conf
 echo "rpcpassword=${RPCPASSWORD}"  >> ~/.bulwark/bulwark.conf
 echo "rpcuser=${RPCUSER}"  >> ~/.bulwark/bulwark.conf
-sudo service bulwarkd restart
+sudo systemctl restart bulwarkd.service
 
 until bulwark-cli getinfo >/dev/null; do
   sleep 1;
