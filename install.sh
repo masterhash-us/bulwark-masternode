@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+echo -e "Default \e[104mLight blue"
 
 # Generate random passwords
 RPCUSER=$(head /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 12 | head -n 1)
