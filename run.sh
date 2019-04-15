@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+echo -e "Default \e[104mLight blue"
 
 function Status() {
     if STATUS=$(bulwark-cli masternode status 2>&1); then
